@@ -1,0 +1,113 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 10 圖片
+
+------
+
+LaTeX 本身是不能處理圖片的，所以我們需要借用 graphicx 來讓 LaTeX 處理圖片，其實還有另一個可以處理圖片的 package 叫 graphics ，他們兩個像是同一個 package 但用著不同的 interface ，兩個除了可選參數的形式之外，不論是命令還是必選參數都一樣。在這裡介紹的是 graphicx ，如果想要使用 graphics 請參考說明文件<連結>
+
+##基礎
+
+只要使用`\includegraphics{檔案}`就可以將圖片導入文件中了
+
+```latex
+\includegraphics{test.png}
+```
+
+但這樣會有一個問題，如果今天圖片與 tex 檔不在同一層目錄下就找不到，圖片少的時候還好，但只要圖片一多再加上 LaTeX 編譯時產生的中間文件就足以將你淹沒在茫茫檔案之中，萬幸的是可以利用`\graphicspath{目錄}`來指定圖片檔案的位置。
+
+```latex
+\graphicspath{{jpg/}{png/}}
+```
+
+這樣 LaTeX 就會自動搜尋 jpg 跟 png 的子目錄了，你可以利用以下的可選參數來調整圖片
+
+|參數|含義|
+|-----|-----|
+|scale|圖片縮放|
+|width|圖片寬度|
+|height|圖片高度|
+|page|如果是插入多頁pdf，要插入第幾頁|
+|draft|啟動草稿模式|
+
+```latex
+\includegraphics[scale=0.25]{test.png}\\
+\includegraphics[scale=0.5]{test.png}\\
+\includegraphics[scale=0.75]{test.png}\\
+\includegraphics[draft]{test.png}
+```
+
+###除了圖片之外
+
+除了圖片外 graphicx 也提供了以下指令
+
+* `\rotatebox{角度}{文字}`
+* `\scalebox{水平縮放}[垂直縮放]{文字}`
+* `\reflectbox{文字}`
+
+第一個 `\rotate{}{}` 顧名思義就是旋轉文字
+
+```latex
+\rotatebox{0}{文字}\\
+\rotatebox{90}{文字}\\
+\rotatebox{180}{文字}\\
+\rotatebox{270}{文字}\\
+```
+
+第二個 `\scalebox{}[]{}` 可以將文字做兩個不同方向的縮放，第三個 `\reflectbox{} `則是讓文字左右翻轉，實際上可以看成 `\scalebox{-1}[1]{文字}`的簡寫
+
+```
+\scalebox{1}[1]{文字}\\
+\scalebox{2}[1]{文字}\\
+\scalebox{1}[2]{文字}\\
+\scalebox{2}[2]{文字}\\
+\scalebox{-1}[1]{文字}\\
+\reflectbox{文字}
+```
+
+##浮動體環境
+
+按著以上的方式用了一段時間後，你可能會發現這樣產出的結果並不好看，這時只要將圖片放進 figure 環境即可，LaTeX 就會自動幫挑選好位置插入圖片了
+
+```latex
+\begin{figure}
+\includegraphics[scale=0.5]{test.png}
+\end{figure}
+```
+
+你會發現插入圖片的位置跟程式碼的位置不太一樣，這是因為 LaTeX 會自動決定他認為好看的位置，而不是我們想要的位置，這時候可以在 `\begin{figure}[]`後的方括號加入參數
+
+|參數|含義|
+|-----|-----|
+| h |將圖片放在這裡（不一定跟程式碼一樣，但會相近）|
+| t |放在頁面頂部|
+| b |放在頁面底部|
+| p |為圖片單獨開一頁|
+| ! |覆蓋 LaTeX 預設用來決定「好」位置的參數|
+
+```latex
+\begin{figure}[h]
+\includegraphics[scale=0.5]{test.png}
+\end{figure}
+```
+
+###文繞圖
+
+如果你想要達成文繞圖的效果，需要借助 wrapfig package 提供的 wrapfig 環境
+
+```latex
+%\begin{wrapfigure}{位置}{寬度}
+\begin{wrapfigure}{r}{6cm}
+\includegraphics[width=5.5cm]{test.png}
+\end{wrapfigure}
+```
+
+下表是可以使用的位置
+
+|參數|含義|
+|-----|-----|
+| r |靠右側|
+| l |靠左側|
+| i |雙面模式下靠書封|
+| o |雙面模式下靠書的開口|
+
+\end{markdown}

@@ -1,0 +1,93 @@
+\documentclass[10pt, a5paper, twoside]{NGPLS}
+\author{周造麟}
+\title{30 天 LaTeX}
+
+\usepackage{luatexja-fontspec}
+\setmainjfont{jf-openhuninn-1.1.ttf}
+
+\setlength{\parindent}{0pt}
+\linespread{1.35}
+\pagenumbering{arabic}
+
+\usepackage[pipeTables, strikeThrough = true]{markdown}
+\markdownSetup{fencedCode = true}
+\markdownSetup{
+  renderers = {
+    image = {\begin{figure}[!htb]
+      \centering
+      \includegraphics[width = .8\linewidth]{#3}%
+      \ifx\empty#4\empty\else
+        \caption{#4}\label{fig:#1}%
+      \fi
+    \end{figure}},
+    }
+}
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+
+\usepackage{etoolbox}
+%\AtBeginEnvironment{itemize}{\vskip6pt}
+\AtBeginEnvironment{tabular}{\vskip6pt}
+\AfterEndEnvironment{tabular}{\vskip6pt}
+
+\usepackage[svgnames]{xcolor}
+%\definecolor{LightGray}{gray}{0.9}
+
+\usepackage{minted}
+%\usemintedstyle{borland}
+
+\usepackage{xurl}
+\usepackage[breaklinks=true]{hyperref}
+\urlstyle{same}
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+urlcolor=cyan,
+hyperindex = false
+}
+
+%\setlength{\parskip}{0.1\baselineskip}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{geometry}
+\geometry{top=1.5cm, outer=1.75cm, inner=1.5cm, bottom=1.5cm, footskip=24pt}
+
+\begin{document}%\color{Gold}\pagecolor{black}
+\maketitle
+\tableofcontents\newpage
+\input{1拷貝}\newpage
+\input{2拷貝}\newpage
+\input{3拷貝}\newpage
+\input{4拷貝}\newpage
+\input{5拷貝}\newpage
+\input{6拷貝}\newpage
+\input{7拷貝}\newpage
+\input{8拷貝}\newpage
+\input{9拷貝}\newpage
+\input{10拷貝}\newpage
+\input{11拷貝}\newpage
+\input{12拷貝}\newpage
+\input{13拷貝}\newpage
+\input{14拷貝}\newpage
+\input{15拷貝}\newpage
+\input{16拷貝}\newpage
+\input{17拷貝}\newpage
+\input{18拷貝}\newpage
+\input{19拷貝}\newpage
+\input{20拷貝}\newpage
+\input{21拷貝}\newpage
+\input{22拷貝}\newpage
+\input{23拷貝}\newpage
+\input{24拷貝}\newpage
+\input{25拷貝}\newpage
+\input{26拷貝}\newpage
+\input{27拷貝}\newpage
+\input{28拷貝}\newpage
+\input{29拷貝}\newpage
+\input{30拷貝}\newpage
+\input{31}
+
+\end{document}

@@ -1,0 +1,72 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 4 中文環境配置
+
+來到了第四天，在將發行版與編譯器都下載好之後終於要進入到使用中文了，以下提供數種支持中文的方式。
+
+##PdfLaTeX + CJK
+
+在 Preamble 中加入`\usepackage{CJKutf8}`並且在需要使用到中文的部分使用`\begin{CJK}{UTF-8}{字體}......\end{CJK}`就可以使用中文了，下面有一個小小的範例
+
+```latex
+\usepackage{CJKutf8}
+% bsmi = 明體
+% bkai = 楷書
+\begin{CJK}{UTF-8}{bsmi}
+這裡就可以用中文了喔
+\end{CJK}
+```
+
+但這種方法可以使用的中文字體必須是 TeX 發行版自帶的中文字體，在字體的選擇上有一定的局限性。
+
+##XeLaTeX + fontspec 的土炮用法
+
+在 XeLaTeX 的環境下使用`latex\usepackage{fontspec}`並宣告新的字體`latex\newfont\swich{Font}`，然後就可以在文本區中需要中文的地方用\{\swich 中文\}的方式打出中文了。
+
+##XeLaTeX + CTeX
+
+CTeX 是一套由中國人開發的巨集，但其實他本身並不提供中文支持，只是它會幫你根據你的編譯引擎設定好巨集，除此之外 CTeX 還一並提供了符合中文排版的文件格式、預先定義好的中文字體，但不知道為什麼，這套對 Mac OS 的兼容性並不好。
+
+```latex
+\documentclass[•]{•}
+\usepackage{ctex}
+\begin{document}
+我可以用中文了
+\end{document}
+```
+
+|名稱|用途|
+|-----|-----|
+|ctexart|簡單的幾頁文件|
+|ctexrep|報告|
+|ctexbook|書籍|
+|ctexbeamer|投影片|
+
+＾提供的文件格式
+
+##XeLaTeX + xeCJK
+
+這是 ctex 在 XeLaTeX 的環境下使用的中文支持方案，一些常用的設定如下。
+
+```latex
+\usepackage{xeCJK}%匯入巨集
+\setCJKmainfont[可選參數]{字體名}%設置主要字體
+\setCJKfallbackfont[可選參數]{字體名}%設置備用字體
+```
+
+##LuaLaTeX + luatexja
+
+這是必須使用 LuaLaTeX 時才會用到的配置，不然我主要是使用 xeCJK
+
+```latex
+%\documentclass[•]{•}
+%加-fontspec 才可以設定字體
+\usepackage{luatexja-fontspec}
+\setmainjfont{Font}
+%然後就可以使用中文了
+```
+
+##總結
+
+使 LaTeX 支持中文的方法不只一種，可以依照自己的需求尋找最適合的方式，我推薦 XeLaTeX + xeCJK 或 LuaLaTeX + luatexja 的方式，其他就讓它留在歷史的洪流中吧。
+
+\end{markdown}

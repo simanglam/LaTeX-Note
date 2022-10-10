@@ -1,0 +1,75 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 12 xcolor
+
+------
+
+在前半段的使用中 LaTeX 產出的文字都是黑白的，如果想要讓 LaTeX 變成彩色的，需要加入 xcolor 這個 package
+
+##定義顏色
+
+xcolor 提供了`\definecolor{名字}{模型}{參數}` 命令供定義顏色，xcolor 支持 html, rgb, cmyk 等等的顏色模型，用不同的模型會影響參數的形式，
+
+```latex
+\definecolor{cyan1}{rgb}{0, 255, 255}
+\definecolor{cyan2}{html}{00FFFF}
+\definecolor{cyan3}{cmyk}{255, 0, 0, 0}
+```
+
+上面雖然都用不同的顏色模型，但定義出的顏色都是一樣的，xcolor 本身有預定義一些基本顏色，如同下圖所示
+
+<圖片>
+
+除此之外 color 也提供了`svgnames, dvinames, x11names` 這三個選項提供更多預定義好的顏色
+
+```latex
+\usepackage[svgnames]{xcolor}
+\usepackage[dvinames]{xcolor}
+\usepackage[x11names]{xcolor}
+```
+
+如果想要讓兩種顏色混合，可以利用`\colorlet{名稱}{混合方式}`來混合兩種顏色
+
+
+```latex
+\colorlet{mycolor1}{yellow!10!red}
+\colorlet{mycolor2}{blue!10}
+```
+
+mycolor1 會是 10\%的黃色加上90\%紅色，mycolor2 會是10\%藍色加上90\%的白色。
+
+##文字顏色
+
+想要讓文字上色有兩種辦法，一種是利用`\color{}`將更改預設顏色，另一種是利用`\textcolor{顏色}{文字}`小範圍的更改。
+
+```latex
+\color{yellow}
+Banana\\
+\color{red}
+Apple \textcolor{blue}{Ocean}
+```
+
+如果是想要幫文字上底色，可以使用`\colorbox{顏色}{文字}`上色
+
+```latex
+|\colorbox{yellow}{Important}|
+\colorbox{yellow}{Important}
+```
+
+如果想要邊匡，可以利用`\fcolorbox{邊匡顏色}{底色}{文字}`
+
+```latex
+\colorlet{mycolor}{blue!50}
+\fcolorbox{red}{yellow}{IMPORTANT}\\
+\fcolorbox{blue}{mycolor}{Relax}
+```
+
+##背景顏色
+
+背景顏色可以利用`\pagecolor{}`來更改
+
+```latex
+\pagecolor{red}
+A red paper with some message.
+```
+
+\end{markdown}

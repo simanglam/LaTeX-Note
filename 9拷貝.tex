@@ -1,0 +1,166 @@
+\begin{markdown}
+# 30天 LaTeX 挑戰 Day 9 列表與表格
+
+------
+
+##列表
+
+在 LaTeX 中有三種不同的列表環境， 分別是 itemize, enumerate 與 description，這三個在使用上除了輸出結果不同外，其他都是完全相同的。
+
+### itemize
+
+itemize 是最簡單的列表環境
+
+```latex
+\begin{itemize}
+\item 第一點
+\item 第二點
+\item 第三點
+\end{itemize}
+```
+
+只要在環境中利用 `\item` 就可以放置項目符號，如果想要自訂項目符號，只需要像 `\item[]` 這樣指定即可
+
+```latex
+\begin{itemize}
+\item 第一點
+\item[\$]第二點
+\item[\#]第三點
+\end{itemize}
+```
+
+可以看到第二點與第三點的項目符號換成了 \$ 與 \# ，也可以將項目符號換成數字
+
+```latex
+\begin{itemize}
+\item[1]第一點
+\item[2]第二點
+\item[2]第三點
+\end{itemize}
+```
+
+但通常不會有人這樣做，因為可以靠下一個要介紹的列表環境來達成類似的事情。
+
+### enumerate
+
+如同上一段所說， enumerate 的項目符號是連續的數字，如果需要列出有順序的列表，可以考慮使用這個環境。
+
+```latex
+\begin{enumerate}
+\item 第一點
+\item 第二點
+\item 第三點
+\end{enumerate}
+```
+
+如果想要在一個大項目下細分出子項目，可以在 enumerate 環境中再使用一次 enumerate 環境
+
+```latex
+\begin{enumerate}
+\item 第一點
+\begin{enumerate}
+\item 第一小點
+\item 第二小點
+\item 第三小點
+\end{enumerate}
+\item 第二點
+\item 第三點
+\end{enumerate}
+```
+
+### description
+
+description 環境比較像在說明某些事物時會用到的環境，在使用 `\item `時如果沒有指定項目符號，就會像下圖所示一般
+
+```latex
+\begin{description}
+\item 什麼都沒有？
+\item 什麼都沒有！
+\item 什麼都沒有。
+\end{description}
+```
+
+可以看到原本該有項目符號的地方什麼都沒有，但如果項目符號有被指定，就不會像上面什麼都沒有
+
+```latex
+\begin{description}
+\item[項目符號] 有東西了？
+\item[項目符號] 有東西了！
+\item[項目符號] 有東西了。
+\end{description}
+```
+
+這樣的特性讓他可以用在論文中的符號說明或名詞解釋的地方
+
+```latex
+\begin{description}
+\item[符號] 解釋
+\item[符號] 解釋
+\item[符號] 非常非常非常非常長的解釋
+\end{description}
+```
+
+除此之外，這些列表環境也可以混用，例如下面的例子
+
+```latex
+\begin{enumerate}
+\item 某化學物質
+\begin{itemize}
+\item 物理性質
+\begin{description}
+\item[性質] 解釋
+\item[性質] 解釋
+\item[性質] 解釋
+\end{description}
+\item 化學性質
+\begin{description}
+\item[性質] 解釋
+\item[性質] 解釋
+\item[性質] 解釋
+\end{description}
+\end{itemize}
+\end{enumerate}
+```
+
+可以看到這是一個比較複雜的例子。
+
+##表格
+
+想要在 LaTeX 中使用表格需要利用 tabular 環境
+
+```latex
+\begin{tabular}{| c | l r |}
+\hline
+第一欄 & 第二欄 & 第三欄 \\
+\hline
+\end{tabular}
+```
+
+* 在 `\begin{tabular}` 後的花括號中指定的是欄位及對齊方式，`|` 是代表在這兩欄之間要有分隔線，c, l, r 分別代表置中、置左、置右對齊
+* `\hline `是讓 LaTeX 畫一條橫線
+* & 是跳到下一欄的的符號
+* `\\`是告訴 LaTeX 這一行結束了，要跳到下一行。
+
+如果想指定欄寬可以用 p{寬度} 的方式，但在這種情況下預設是置左對齊
+
+```latex
+\begin{tabular}{|p{4cm}|p{2cm}|}
+\hline
+四公分 & 兩公分 \\
+\hline
+\end{tabular}
+```
+
+但要直接這樣使用會有許多問題，所以我們要將表格放進 table 環境內，原因是在下一篇有提到的浮動體
+
+```latex
+\begin{table}
+\begin{tabular}{|p{4cm}|p{2cm}|}
+\hline
+四公分 & 兩公分 \\
+\hline
+\end{tabular}
+\end{table}
+```
+
+\end{markdown}

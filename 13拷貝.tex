@@ -1,0 +1,99 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 13 交叉引用
+
+-------
+
+在寫文章時，如果遇到要引用到文章前面的狀況往往是最讓人頭疼的，因為只要文章一被改過，你就很有可能需要將後面引用到的部分全部修改過，幸好 LaTeX 針對這個問題提供了`\label{}, \ref{} &\pageref{}`這三個指令，拯救我們脫離水深火熱之中。
+
+##引用章節
+
+`\label{}` 顧名思義就是在文章中放入一個標籤，等到需要時再利用`\ref{} 或 \pageref{}` 來引用
+
+```latex
+\section{原子說}\label{sec:Atomic Theory}
+假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文
+
+\section{定比定律}
+根據第\ref{sec:Atomic Theory}章的內容⋯⋯
+```
+
+如果你想把頁碼一起含進去，可以使用`\pageref{}`來完成
+
+```latex
+\section{原子說}\label{sec:Atomic Theory}
+假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文
+
+\section{定比定律}
+根據第\pageref{sec:Atomic Theory}頁第\ref{sec:Atomic Theory}章的內容⋯⋯
+```
+
+##引用表格 ＆ 引用圖片 & 引用方程式
+
+想要引用這三種元素很簡單，只需要將`\label{}`放入環境之中即可
+
+```latex
+\begin{figure}[h]\label{fig:1}
+\includegraphics{Triangle.png}
+\end{figure}
+圖\ref{fig:Triangle}是一個三角形\\
+
+\begin{tabular}{|c c c|}\label{tab:1}
+\hline
+$\theta^\circ$ & $\sin(\theta^\circ)$ & $\cos(\theta^\circ)$\\
+\hline
+$30^\circ$ & $\frac{\sqrt{3}}{2}$ & $\frac{1}{2}$\\
+$45^\circ$ & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{2}}{2}$\\
+$60^\circ$ & $\frac{1}{2}$ & $\frac{\sqrt{3}}{2}$\\
+\hline
+\end{tabular}
+
+表\ref{tab:sin}是角度與$\sin, \cos$值的關係表
+
+\begin{equation}\label{eq:1}
+a^2 + b^2 = c^2
+\end{equation}
+方程式（\ref{eq:1}）是畢氏定理
+```
+
+需要注意的是如果環境內有`\caption{}`命令，建議將`\label{}`命令放在`\caption{}`後。
+
+##其他元素
+
+如果你想要引用的是自定義的編號環境，引用方式就如同引用 LaTeX 內建的環境一樣，但如果你想要引用的元素並不是以上這幾種，那你可以考慮直接用`\pageref{}`引用頁碼。
+
+##超連結
+
+你會注意到引用雖然好用，但沒有辦法點下去前往被引用的元素，這時後我們可以利用 `hyperref` 這個 package 來救場。
+
+```latex
+\section{原子說}\label{sec:Atomic Theory}
+假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文假文
+
+\section{定比定律}
+根據第\pageref{sec:Atomic Theory}頁第\ref{sec:Atomic Theory}章的內容⋯⋯
+```
+
+你可以看到在`\pageref{}`產生的數字上出現了紅匡，且點下去會前往被引用的區段，但除了這之外，`hypperef` 也提供了 `\href{連結}{顯示文字}`與`\url{連結}`來在文件中插入超連結
+
+```latex
+\href{https://www.overleaf.com}{Overleaf}\\
+\url{https://www.overleaf.com}
+```
+
+如果你不喜歡連結被紅匡包起來，可以利用`\hypersetup{}`來更改
+
+```latex
+\hypersetup{hidelinks}
+\href{https://www.overleaf.com}{Overleaf}\\
+\url{https://www.overleaf.com}
+```
+
+這裡有可以更改的參數
+
+|參數|含義|值|
+|------|------|------|
+|linkcolor|內部連結顏色|顏色名字|
+|urlcolor|超連結顏色|顏色名字|
+|colorlinks|是否幫連結上色|布林值|
+|breaklinks|是否允許連結換行|布林值|
+\end{markdown}

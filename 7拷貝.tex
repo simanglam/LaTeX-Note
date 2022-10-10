@@ -1,0 +1,110 @@
+\begin{markdown}
+# 30天 LaTeX 挑戰 Day 7 版面配置
+
+##一些內建的處理
+
+以下是 LaTeX 的文件類別內建的版面配置
+
+|選項|含義|
+|-----|-----|
+|a4paper|設定紙張大小為a4|
+|a5paper|設定紙張大小為a5|
+|twoside|雙面模式|
+|twocolumn|雙欄模式||
+|landscape|將紙張旋轉90度|
+|參數|含義|
+|paperheight|紙張高度|
+|paperwidth|紙張寬度|
+
+選項只需要放在`\documentclass[]{}`的中括號內即可，但下面的參數需要利用`\setlength{參數}{數值}`的方式修改。
+
+```latex
+\documentclass[a4paper,landscape]{article}
+and
+\setlength{\paperheight}{value}
+\setlength{\paperwidth}{value}
+```
+
+##邊界
+
+邊界可以利用 geometry package 來設定
+
+```latex
+\usepackage[key1=value, key2=value]{geometry}
+or
+\usepackage{geometry}
+\geometry{key1=value, key2=value}
+```
+
+下表有一些常用的 key
+
+|Key|含義|
+|-----|-----|
+|top|上邊界|
+|bottom|下邊界|
+|left|左邊界|
+|right|右邊界|
+|outter|雙頁模式下的右側邊界|
+|inner|雙頁模式下的右側邊界|
+
+##各種距離
+
+這裡要介紹的距離有
+
+* parskip
+* parindent
+* leftskip
+* rightskip
+* baselineskip
+* lineskip
+
+###parskip
+
+parskip 是指 LaTeX 在兩個段落中加入的空白
+
+```latex
+\lipsum[][50]
+
+\lipsum[][50]
+
+\parskip 2cm \lipsum[][50]
+
+\lipsum[][50]
+```
+
+可以看到段落間的距離變了
+
+###parindent
+
+parindent 是指段落前的縮進
+
+```latex
+\setlength{\parindent}{15pt}
+ewjriwerflnioweor
+```
+
+但 LaTeX 會將標題後的段落視為引言，引言是不會縮排的
+
+###leftskip & rightskip
+
+這是調整兩邊縮排的
+
+###baselineskip & lineskip
+
+這是跟行距有關的兩個選項，baselineskip 是指兩行字基線的距離，是透過 $font size \times 1.2 \times \linespread{value}$ 得出的，若要在文本區內更改，需要使用 `\selectfont` 命令。
+
+```latex
+\setlength{\baselineskip}{12pt}\selectfont
+AAAAAA
+
+AAAAAA
+\setlength{\baselineskip}{24pt}\selectfont
+AAAAAA
+
+AAAAAA
+```
+
+lineskip 則是在上下兩條基線超過 baselineskip 時兩行之間的距離，
+如果要調整行距，建議使用 setspace package 提供的 `\singlespacing、\onehalfspacing 、\doublespacing` 命令，或者利用 `\linespread{vaule}` 設定行距。
+
+\end{markdown}

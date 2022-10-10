@@ -1,0 +1,94 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 18 tcolorbox
+
+------
+
+今天要介紹的是 tcolorbox，它提供了一個簡單的產生高度客製化 color box 的方式。
+
+##基礎使用
+
+tcolorbox 提供了`tcolorbox`這個環境供我們建立 colorbox
+
+```latex
+\begin{tcolorbox}
+This is a colored box.
+\end{tcolorbox}
+```
+
+###Style
+
+|參數|含義|
+|-----|-----|
+|colback|底色|
+|colbacklower|下半部分的底色|
+|colframe|邊匡顏色|
+|coltitle|title 欄的底色|
+|colupper|上半部分文字的顏色|
+|collower|下半部分文字的顏色|
+|coltext|文字顏色|
+|subtitle style|title 欄的樣式|
+|boxrule|邊匡粗細|
+|fonttitle|標題文字的樣式|
+|fontupper|上半部分文字的樣式|
+|fontlower|下半部分文字的顏色|
+
+需要注意的是`colbacklower`需要搭配其他命令才可使用，之後會介紹到，如果想要設定一個預設值可以利用`\tcbset{}`來完成。
+
+###標題與副標題
+
+可以用`[title=title]`為他加入標題
+
+```latex
+\begin{tcolorbox}[title=Title]
+This is a colored box with a title.
+\end{tcolorbox}
+```
+
+也可以用`\tcbsubtitle{Subtitle}`來插入副標題
+
+```latex
+\begin{tcolorbox}[title=Title]
+This is a colored box with a title.
+\tcbsubtitle{Subtitle}
+And subtitle.
+\end{tcolorbox}
+```
+
+###上下分段
+
+如果你想要將一個 box 分成兩段可以利用`\tcblower` 
+
+```latex
+\begin{tcolorbox}
+Upper Box
+\tcblower
+Lower Box
+\end{tcolorbox}
+```
+
+這樣預設會是上下兩段，可以利用`sidebyside`改成左右各佔一半
+
+```latex
+\begin{tcolorbox}[sidebyside]
+Upper Box
+\tcblower
+Lower Box
+\end{tcolorbox}
+```
+
+###更多
+
+但 tcolorbox 可不只有這樣，你可以利用`\tcbuselibrary{}`去調用一些延伸功能，例如調用 skin 可以讓上下兩段的顏色分開設定
+
+```latex
+%\tcbuselibrary{skins}
+\begin{tcolorbox}[skin=bicolor, sidebyside, colback=gray!30!white,colbacklower=gray!5!white]
+Bicolor
+\tcblower
+Bicolor
+\end{tcolorbox}
+``` 
+
+當然除了上述的技巧之外，tcolorbox 還有許多用處我沒有講到，如果想要好好的研究可以參考他的使用手冊<連結>。
+
+\end{markdown}

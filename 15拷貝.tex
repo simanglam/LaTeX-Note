@@ -1,0 +1,137 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 15 數學（下）
+
+------
+
+今天的內容有涉及到美國數學家協提供的 **amssym, amsfonts** 與 **amsmath** ，若有涉及到這些 package 的應用，我會在下面特別標注，如果沒有標註就是 LaTeX 基本的使用。
+
+##各種的應用
+
+基本的函數都是用反斜槓加函數名稱的方式輸出
+
+||||
+|------|------|------|------|
+|\sin |\cos |\tan |\cot |
+|\arccos |\arcsin |\arctan |\sec |
+|\csc |\exp |\log |\deg |
+|\lim |\inf |\min |\max |
+
+想要使用其他字體嗎？LaTeX 提供了以下幾種字體
+
+|字體|結果|
+|-----|-----|
+|`\mathrm{ABCabc123}`|$\mathrm{ABCabc123}$|
+|`\mathit{ABCabc123}`|$\mathit{ABCabc123}$|
+|`\mathnormal{ABCabc123}`|$\mathnormal{ABCabc123}$|
+|`\mathcal{ABCabc123}`|$\mathcal{ABCabc123}$|
+
+數學模式的輸出皆為斜體，可以用 `\mathrm{}` 轉為正體，如果想在數學模式中加粗字體，可以利用 **amsmath** 提供的 `\boldsymbol` 命令
+
+```latex
+$
+\mu ,\boldsymbol{\mu}\\
+\delta ,\boldsymbol{\delta}
+$
+```
+
+空心粗體則需要 amsfonts 提供的 `\mathbb{}` 命令
+
+```latex
+$
+x > 1 and x \in \mathbb{R}
+$
+``` 
+
+如果想要將某個公式的推導過程寫下，可以利用 **amsmath** 提供的 align 環境
+
+```latex
+\begin{align}
+
+\end{align}
+```
+
+在想要對齊的地方用 & 指定即可，實際上的使用方式就與表格類似，如果不想要編號，使用帶星號的 `align*` 即可
+
+```latex
+\begin{align*}
+
+\end{align*}
+```
+
+如果需要輸出矩陣，可以使用 `matrix` 環境
+
+```latex
+$
+\begin{matrix}
+3 & 0\\
+0 & 3
+\end{matrix}
+$
+```
+
+但這樣就只是一些對齊的的數字，所以我們可以利用以下的方式來輸出含有小括號的矩陣
+
+```latex
+\[
+\left(\begin{matrix}
+2 & 0\\
+0 & 2
+\end{matrix}\right)
+\]
+```
+
+或者使用由 **amsmath** 提供的 pmatrix 環境
+
+```latex
+\[
+\begin{pmatrix}
+2 & 0\\
+0 & 2
+\end{pmatrix}
+\]
+```
+
+不只是小括號，也可以使用方括號、花括號
+
+```latex
+\[
+\begin{bmatrix}
+2 & 0\\
+0 & 2
+\end{bmatrix}
+\begin{Bmatrix}
+2 & 0\\
+0 & 2
+\end{Bmatrix}
+\]
+```
+
+甚至是行列式也可以利用這個方法輸出
+
+```latex
+\[
+\begin{vmatrix}
+2 & 0\\
+0 & 2
+\end{vmatrix}
+\begin{Vmatrix}
+2 & 0\\
+0 & 2
+\end{Vmatrix}
+\]
+```
+
+如果想要輸出聯立方程式，可以利用 **amsmath** 提供的 cases 環境
+
+```latex
+\[
+\begin{cases}
+x &= 1\\
+y &= 3x + 9
+\end{cases}
+\]
+```
+
+當然，我所列出的例子只是滄海一粟，實際上還有更多的可能性，但由於我很少利用這部分的功能，所以我只能簡單地把我知道的使用方式全都寫出，更進一步的使用方式可以參考這些文章。
+
+\end{markdown}

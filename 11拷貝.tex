@@ -1,0 +1,67 @@
+\begin{markdown}
+# 30天 LaTeX 挑戰 Day 11 自定義
+
+------
+
+在 LaTeX 中有以下幾種自定義命令、環境的方法
+
+* `\newcommand{cmd}[必選參數]{definition}`
+* `\renewcommand{cmd}[必選參數]{definition}`
+* `\newenvironment{env}[必選參數]{before env}{after env}`
+* `\renewenvironment{env}[必選參數]{before env}{after env}`
+
+##`\newcommand & \renewcommand `
+
+`\newcommand `是拿來自定義命令的，而`\renewcommand ` 則是重新定義現有命令的
+
+```latex
+\newcommand{\impotant}[1]{\textcolor{yellow}{#1}}
+\important{Important}
+```
+
+在上述例子中，第一個花括號是命令，中間的中括號是必選參數的數量，最後一個花括號是命令的定義，這裡是利用了上一篇提到的`\textcolor `將字體顏色變為黃色的，而 #1 則是代表第一個可選參數。
+
+##`\newenvironment & \renewenvironment`
+
+`\newenvironment  & \renewenvironment `與`\newcommand & \renewcommand `的思維一樣，只不過命令要改成環境
+
+```latex
+\newenvironment{highlight}{\begin{Large}\color{red}\bfseries}{\end{Large}}
+\begin{highlight}
+被特別強調的文字
+\end{highlight}
+```
+
+##編號環境
+
+如果想要讓環境編號就必須利用`\newcounter{名稱}{父計數器} `定義一個新計數器，在使用`\newcounter `定義一個新計數器後， LaTeX 會自動生成`\the名稱 `的命令儲存計數器的值。
+
+```latex
+\newcounter{example}
+\theexample
+```
+
+可以用`\setcounter{計數器}{值}`來設定計數器的值
+
+```latex
+\newcounter{example}
+\setcounter{example}{40}
+\theexample
+```
+
+可以用`\stepcounter 或\refstepcounter `將計數器的值加一，兩者的區別在`\refstepcounter `增加的值可以被 label 或 ref 等命令使用。
+
+```latex
+\newcounter{example}
+第一次試驗\theexample ，\refstepcounter refstepcounter 之後\theexample >
+```
+
+範例：
+
+```latex
+\newcounter{example}
+\newenvironment{example}{\refstepcounter{example}\textbf{\large Example \theexample.}\medskip}{}
+
+```
+
+\end{markdown}

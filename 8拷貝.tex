@@ -1,0 +1,79 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 8 字體與字型
+
+-----
+
+來到了第八天，本篇要講的是 LaTeX 的字體與字型的設定。
+
+##字型
+
+###字體大小
+
+LaTeX 預設內文字體是 10pt 並提供了 11 & 12 pt 可供使用，並且 LaTeX 有預設一些字體大小
+
+|環境|swich|10pt|11pt|12pt|
+|-----|-----|-----|-----|-----|
+|`\begin{tiny}`|`\tiny` | 5pt | 6pt | 6pt |
+|`\begin{scriptsize}`|`\scriptsize` | 7pt | 8pt | 8pt |
+|`\begin{footnotesize}`|`\footnotesize` | 8pt | 9pt | 10pt |
+|`\begin{small}`|`\small` | 9pt | 10pt | 11pt |
+|`預設大小`|`\normalsize` | 10pt | 11pt | 12pt |
+|`\begin{large}`|`\large` | 12pt | 12pt | 14pt |
+|`\begin{Large}`|`\Large` | 14pt | 14pt | 17pt |
+|`\begin{LARGE}`|`\LARGE` | 17pt | 17pt | 20pt |
+|`\begin{huge}`|`\huge` | 20pt | 20pt | 25pt |
+|`\begin{Huge}`|`\Huge` | 25pt | 25pt | 25pt |
+
+如果想要使用特殊的字體大小可利用`\fontsize{font size}{line skip}\selectfont `
+
+
+###粗體
+
+使用`\textbf{your word}`或`\bfseries` 來改變字體粗細
+
+```latex
+\textbf{Bold} or {\bfseries Bold}
+```
+
+###斜體
+
+使用`\textit{your word}`或`\itshape` 來更改文字傾斜。
+
+```latex
+\textit{italic} or {\itshape italic}
+```
+
+###強調
+
+使用`\emph{Important}`即可
+
+```latex
+VERY VERT \emph{IMPORTANT}
+```
+
+##字體
+
+由於 LaTeX 支持的字體技術過於久遠，於是這裡所要教學的是在 XeLaTeX 與 LuaLaTeX 的環境下可以用的技巧
+
+###在 xeCJK 上
+
+在 xeCJK 中可以利用`\setCJKmainfont[font features]{font}`來設定主要字體，也可以利用`\newCJKfontfamily[family(可不指定，不指定時等同於switch)]\swich{font}[font features]`來聲明新的字族。
+
+```latex
+\setCJKmainfont{TW-Kai}
+\newCJKfontfamily\sung{TW-Sung}
+
+標楷體、\sung 宋體
+```
+
+###在 luatexja 上
+
+在 luatexja 也是一樣，只不過命令長得不一樣，`\setmainjfont` 與`\newjfontfamily`
+
+```latex
+\setmainjfont{TW-Kai}
+\newjfontfamily\sung{TW-Sung}
+
+標楷體、\sung 宋體
+```
+\end{markdown}

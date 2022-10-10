@@ -1,0 +1,75 @@
+\begin{markdown}
+#30天 LaTeX 挑戰 Day 6 文檔結構
+---
+
+本篇文章是要介紹 LaTeX 的文檔節構，LaTeX 文檔可以分成兩個大部分：導言區與文本區，這兩個部分是拿來幹嘛的呢？答案都在本篇內。
+
+##導言區
+
+導言區指的是檔案內 \begin{document} 前的部分，通常我們會在這裡引入需要的 package、選擇文件的類別、定義一些需要的參數、命令，你可以簡單的理解為定義模板，或理解為 HTML 的 \<HTML\> 標籤。
+
+```latex
+\documentclass[]{}
+%導言區
+\begin{document}
+%文本區
+\end{document}
+```
+在導言區下列兩個命令是最為重要的
+
+* \documentclass[]{}
+* \usepackage{}
+
+前者是決定文件的類別，後者是使用巨集，下表與可選的文件類別
+
+| 文件類別 | 用途 |
+| ------ | ------ |
+| article | 短文章 |
+| report | 多章節的長報告 |
+| book | 書籍 |
+| beamer | 簡報 |
+
+本篇若未特別說明皆是基於 article 類別
+
+|巨集|用途|
+|----|----|
+|xeCJK|XeTeX 為編譯引擎的環境下提供中文支持|
+|xcolor|使 LaTeX 支持多彩|
+|mhchem|化學反應式|
+|chemfig|化學結構式|
+|Geometry|文件版面|
+|tikz|繪圖|
+|tcolorbox|好看的 color box|
+|listings|程式碼展示|
+|graphicx|圖片|
+|biblatex|參考文獻管理|
+∆常用巨集列表
+
+##文本區
+
+文本區才是文章的內容的所在，文章上會顯示的內容都會被打在這裡。
+
+###標題與目錄
+
+在 LaTeX 預定義的文件類別中，有以下幾種的標題格式被預定義好，只要使用這些命令，就可以利用 \tableofcontent 建立目錄，也可以利用 \listoffigre 與 \listoftable 來建立圖目錄與表目錄
+
+|名稱|說明|深度|
+|---|---|---|
+|\part{}|部|-1 （在 article 為 0）|
+|\chapter{}|章|0（在 article 中未被定義）|
+|\section{}|節|1|
+|\subsection{}|小節|2|
+|\subsubsection{}|小小節|3|
+|\paragraph{}|段|4|
+|\subparagraph{}|小段|5|
+
+深度在 LaTeX 文件類型的定義中是用來決定該不該被 \tableofcontent 編入目錄的，以下有一些有關的指令
+
+```latex
+\setcounter{tocdepth}{2}%設定深度
+
+\section*{}%只要加一個星號就會不編號也不編入目錄
+
+\addcontentsline{toc()/lof/lot}{層級}{名稱}%將未編入目錄的標題標入目錄
+```
+\end{markdown}
