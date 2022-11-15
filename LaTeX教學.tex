@@ -1,13 +1,14 @@
-\documentclass[10pt, a5paper, twoside]{NGPLS}
+\documentclass[10pt, a5paper, twoside]{NGPLB}
 \author{周造麟}
 \title{30 天 LaTeX}
 
-%\usepackage{luatexja-fontspec}
-%\setmainjfont{jf-openhuninn-1.1.ttf}
-\usepackage{xeCJK}
-\setCJKmainfont{jf-openhuninn-1.1.ttf}
+\usepackage{luatexja-fontspec}
+\setmainjfont{jf-openhuninn-1.1.ttf}%王漢宗特明體繁
+%\setmainjfont{王漢宗特明體繁}
+%\usepackage{xeCJK}
+%\setCJKmainfont{王漢宗特明體繁}
+%\setCJKmonofont{王漢宗特明體繁}
 
-\setlength{\parindent}{0pt}
 \linespread{1.35}
 \pagenumbering{arabic}
 
@@ -33,7 +34,7 @@
 \AfterEndEnvironment{tabular}{\vskip6pt}
 
 \usepackage[svgnames]{xcolor}
-%\definecolor{LightGray}{gray}{0.9}
+\definecolor{LightGray}{gray}{0.9}
 
 \usepackage{minted}
 %\usemintedstyle{borland}
@@ -42,7 +43,7 @@
 \usepackage[breaklinks=true]{hyperref}
 \urlstyle{same}
 \hypersetup{
-colorlinks=true,
+hidelinks,
 linkcolor=blue,
 urlcolor=cyan,
 hyperindex = false
@@ -57,9 +58,42 @@ hyperindex = false
 \usepackage{geometry}
 \geometry{top=1.5cm, outer=1.75cm, inner=1.5cm, bottom=1.5cm, footskip=24pt}
 
-\begin{document}%\color{Gold}\pagecolor{black}
-\maketitle
-\tableofcontents\newpage
+\usepackage{indentfirst}
+\definecolor{fpft}{HTML}{C2C6A7}
+\definecolor{fpbg}{HTML}{254441}
+\setlength{\parindent}{20pt}
+
+\begin{document}
+\begin{titlepage}
+{
+\color{fpft}
+\pagecolor{fpbg}
+{\Huge 30 天 \LaTeX\vskip6pt}
+\hrule
+\vfill
+\begin{center}
+\begin{minipage}{0.6\textwidth}
+\begin{verbatim}
+#              #######        #     # 
+#         ##      #    ######  #   #  
+#        #  #     #    #        # #   
+#       #    #    #    #####     #    
+#       ######    #    #        # #   
+#       #    #    #    #       #   #  
+####### #    #    #    ###### #     # 
+\end{verbatim}
+\end{minipage}
+\end{center}
+\vfill
+\begin{flushright}
+作者：周造麟\\
+Email: qwer09214@gmail.com\\
+Gihub: https://github.com/simanglam
+\end{flushright}
+}
+\end{titlepage}
+\newpage\pagecolor{white}\pagenumbering{Roman}
+\tableofcontents\newpage\pagenumbering{arabic}
 \input{1}\newpage
 \input{2}\newpage
 \input{3}\newpage
@@ -90,6 +124,9 @@ hyperindex = false
 \input{28}\newpage
 \input{29}\newpage
 \input{30}\newpage
-\input{31}
-
+\input{31}\newpage{\color{fpft}\pagecolor{fpbg}
+\begin{titlepage}
+一本出於興趣寫的書籍，內容不佳敬請見諒
+\end{titlepage}
+}
 \end{document}

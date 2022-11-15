@@ -78,10 +78,9 @@ coordinates{(143,62) (50,594) (165,53) (139,348) (145,194) (75,533) (51,258) (15
 \begin{tikzpicture}
 \begin{axis}[x tick label style={/pgf/number format/1000 sep=},width=10cm, grid=major]
 \addplot table [x=year, y=youth, col sep=comma, mark=none] {data.csv};
-\addlegendentry{0~14歲人口所占比率(\%)}
+\addlegendentry{0~14歲人口所占比率(％)}
 \addplot table [x=year, y=old, col sep=comma, mark=none] {data.csv};
-\addlegendentry{65歲以上人口所占比率(\%)}
-%\addplot table[meta=mid]{output.dat};
+\addlegendentry{65歲以上人口所占比率(％)}
 \end{axis}
 \end{tikzpicture}
 ```
@@ -93,6 +92,16 @@ coordinates{(143,62) (50,594) (165,53) (139,348) (145,194) (75,533) (51,258) (15
 
 ##三維圖形
 
-終於進入三維圖形了，
+終於進入三維圖形了，三維圖形的繪製方式與二維圖形相似，只是命令要改用 `\addplot3` 這個命令外，其他的選項幾乎都通用。
+
+```latex
+\begin{tikzpicture}
+\begin{axis}
+\addplot3[surf] {exp(-x^2-y^2)*x};
+\end{axis}
+\end{tikzpicture}
+```
+
+surf 是 surface 的縮寫與 scatter 有異曲同工之妙，同樣會因為某一軸的數值高低而產生顏色變化。
 
 \end{markdown}
